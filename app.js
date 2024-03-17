@@ -1,10 +1,10 @@
-import express from 'express'
+const express = require('express')
 const app = express()
 
 // get the port from env variable
 const PORT = process.env.PORT || 5000
 
-app.use('dist')
+app.use(express.static('dist'))
 
 app.listen(PORT, () => {
   // eslint-disable-next-line no-console
