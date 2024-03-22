@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const express = require('express')
 
 // get the port from env variable
