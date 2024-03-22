@@ -36,7 +36,8 @@ jobs:
         if: ${{ failure() && steps.build.conclusion == 'failure' }}
         with:
           severity: error
-          details: Build failed
+          description: commit ${{ github.event.commits.*.url }} by ${{ github.event.commits.*.username }} broke the build!
+          text: Build failed
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
   
   deployment_pipeline:
@@ -62,7 +63,8 @@ jobs:
         if: ${{ success() }}
         with:
             severity: info
-            details: A new version of Pokedex deployed
+            description: to https://full-stack-open-pokedex-hj.fly.dev/ by ${{ github.event.commits.*.username }}
+            text: A new version of Pokedex deployed
             webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
       
   tag_release:
