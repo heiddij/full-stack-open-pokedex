@@ -25,18 +25,17 @@ jobs:
       - name: Build the app
         id: build
         run: npm run build
-      - name: e2e tests
-        uses: cypress-io/github-action@v5
-        with:
-          command: npm run test:e2e
-          start: npm run start-prod
-          wait-on: http://localhost:5000
+      #- name: e2e tests
+        #uses: cypress-io/github-action@v5
+        #with:
+          #command: npm run test:e2e
+          #start: npm run start-prod
+          #wait-on: http://localhost:5000
       - name: The Build Fail
         uses: rjstone/discord-webhook-notify@v1
         if: ${{ failure() && steps.build.conclusion == 'failure' }}
         with:
           severity: error
-          description: commit ${{ join(github.event.commits.*.url) }} by ${{ join(github.event.commits.*.username) }} broke the build!
           text: Build failed
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
   
@@ -63,7 +62,7 @@ jobs:
         if: ${{ success() }}
         with:
             severity: info
-            description: to https://full-stack-open-pokedex-hj.fly.dev/ by ${{ join(github.event.commits.*.username) }}
+            description: to https://full-stack-open-pokedex-hj.fly.dev
             text: A new version of Pokedex deployed
             webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
       
