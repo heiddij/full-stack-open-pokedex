@@ -24,7 +24,7 @@ jobs:
         run: npm test
       - name: Build the app
         id: build
-        run: npm run build
+        run: npm run plaa
       - name: e2e tests
         uses: cypress-io/github-action@v5
         with:
@@ -52,7 +52,7 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Build the app
-        run: npm run plaa
+        run: npm run build
       - name: Deploy app
         run: flyctl deploy --remote-only
         env:
